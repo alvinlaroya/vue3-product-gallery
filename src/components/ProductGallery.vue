@@ -92,6 +92,11 @@ function prevPage() {
 function retry() {
     refresh();
 }
+
+function toggleFavorite(value: boolean) {
+    showFavorites.value = value;
+    currentPage.value = 1;
+}
 </script>
 
 
@@ -117,7 +122,7 @@ function retry() {
             </div>
 
             <div class="inline-flex rounded-md h-10 shadow-sm border border-gray-300 overflow-hidden">
-                <button @click="showFavorites = false" :class="[
+                <button @click="toggleFavorite(false)" :class="[
                     'px-3 py-1.5 text-sm font-medium transition',
                     !showFavorites
                         ? 'bg-black text-white'
@@ -126,7 +131,7 @@ function retry() {
                     All Products
                 </button>
 
-                <button @click="showFavorites = true" :class="[
+                <button @click="toggleFavorite(true)" :class="[
                     'px-3 py-1.5 text-sm font-medium transition border-l border-gray-300',
                     showFavorites
                         ? 'bg-black text-white'
