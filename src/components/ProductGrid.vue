@@ -25,7 +25,7 @@ const { isFavorite, toggleFavorite } = useFavorites();
                 </div>
                 <button :aria-pressed="isFavorite(product.id)"
                     :aria-label="isFavorite(product.id) ? 'Unfavorite ' + product.name : 'Favorite ' + product.name"
-                    @click="toggleFavorite({ id: product.id, name: product.name })"
+                    @click="toggleFavorite(product)"
                     class="p-2 rounded-full hover:bg-gray-100 transition -mt-2 -mr-2" title="Toggle favorite">
                     <svg v-if="isFavorite(product.id)" xmlns="http://www.w3.org/2000/svg"
                         class="w-5 h-5 text-red-500 fill-red-500" viewBox="0 0 24 24">

@@ -6,11 +6,11 @@ A modern, responsive Vue.js application for browsing and managing a product cata
 
 ## Screenshots
 
-### Table View
-![Product Gallery - Grid View](src/assets/screenshot/Screenshot%202025-09-13%20173103.png)
-
 ### Grid View
-![Product Gallery - Table View](src/assets/screenshot/Screenshot%202025-09-13%20173131.png)
+![Product Gallery - Table View](src/assets/screenshot/grid.png)
+
+### Table View
+![Product Gallery - Grid View](src/assets/screenshot/table.png)
 
 ## Features
 

@@ -12,24 +12,24 @@ const { isFavorite, toggleFavorite } = useFavorites();
 
 <template>
     <table class="min-w-full border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-        <thead class="bg-gray-50">
+        <thead class="bg-gray-200 lg:text-base font-semibold text-gray-700">
             <tr>
-                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">Product</th>
-                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">Category</th>
-                <th class="px-4 py-3 text-left text-sm font-semibold text-gray-700">Price</th>
-                <th class="px-4 py-3 text-center text-sm font-semibold text-gray-700">Stock</th>
-                <th class="px-4 py-3 text-center text-sm font-semibold text-gray-700">Favorite</th>
+                <th class="px-4 py-3 text-left ">Product</th>
+                <th class="px-4 py-3 text-left">Category</th>
+                <th class="px-4 py-3 text-left">Price</th>
+                <th class="px-4 py-3 text-center">Stock</th>
+                <th class="px-4 py-3 text-center">Favorite</th>
             </tr>
         </thead>
         <tbody class="divide-y divide-gray-200">
             <tr v-for="product in products" :key="product.id" class="hover:bg-gray-50 transition">
                 <td class="px-4 py-3">
-                    <span class="text-gray-900 font-medium">{{ product.name }}</span>
+                    <span class="text-black">{{ product.name }}</span>
                 </td>
                 <td class="px-4 py-3 text-gray-600 text-sm">
                     {{ product.category }}
                 </td>
-                <td class="px-4 py-3 text-gray-800 text-sm font-medium">
+                <td class="px-4 py-3 text-black text-sm">
                     ${{ product.price.toFixed(2) }}
                 </td>
                 <td class="px-4 py-3 text-center">
@@ -45,7 +45,7 @@ const { isFavorite, toggleFavorite } = useFavorites();
                 <td class="px-4 py-3 text-center">
                     <button :aria-pressed="isFavorite(product.id)"
                         :aria-label="isFavorite(product.id) ? 'Unfavorite ' + product.name : 'Favorite ' + product.name"
-                        @click="toggleFavorite({ id: product.id, name: product.name })"
+                        @click="toggleFavorite(product)"
                         class="p-2 rounded-full hover:bg-gray-100 transition" title="Toggle favorite">
                         <svg v-if="isFavorite(product.id)" xmlns="http://www.w3.org/2000/svg"
                             class="w-5 h-5 text-red-500 fill-red-500" viewBox="0 0 24 24">

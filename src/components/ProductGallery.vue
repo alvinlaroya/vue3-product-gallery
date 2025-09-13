@@ -10,14 +10,19 @@ import ProductTable from '../components/ProductTable.vue';
 
 /* composables */
 import { useProducts } from '../composables/useProduct';
+import { useFavorites } from '../composables/useFavorite';
+
+const currentPath = ref(window.location.hash)
 
 const {
-    data: allProducts,
+    data: products,
     loading: isLoading,
     error,
     refresh
 } = useProducts({ shouldFail: false });
 const errorMessage = computed(() => error.value || '');
+
+const { data: favorites, clearAllFavorites } = useFavorites();
 
 const tab = ref<'grid' | 'table'>('grid');
 const tabs = {
@@ -39,6 +44,8 @@ watch(itemsPerPage, () => {
 
 // filter and sort all products
 const filteredProducts = computed<Product[]>(() => {
+    const allProducts = currentPath.value === '#/' ? products : favorites;
+
     if (!allProducts.value) return [];
 
     const search = filterText.value.trim().toLowerCase();
@@ -108,9 +115,14 @@ function retry() {
                     <option value="desc">High - Low</option>
                 </select>
             </div>
+
+            <button v-if="currentPath === '#/favorite' && visibleProducts.length > 0" @click="clearAllFavorites"
+                class="px-3 py-2 border rounded-md shadow-sm bg-red-700 text-white justify-end hover:bg-red-500">
+                Clear Favorites
+            </button>
         </div>
 
-        <div class="flex justify-between border-b">
+        <div class="flex lg:justify-between flex-col lg:flex-row border-b pb-3">
             <!-- Category Filter -->
             <Category v-model:category="category" />
 
@@ -147,13 +159,15 @@ function retry() {
                     </select>
                 </div>
                 <div v-if="filteredProducts.length > itemsPerPage" class="flex justify-center items-center gap-3 mt-6">
-                    <button @click="prevPage" :disabled="!hasPrevPage" class="px-3 py-1.5 text-sm rounded-lg border border-gray-300 shadow-sm bg-white hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <button @click="prevPage" :disabled="!hasPrevPage"
+                        class="px-3 py-1.5 text-sm rounded-lg border border-gray-300 shadow-sm bg-white hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed">
                         Previous
                     </button>
                     <span class="text-sm text-gray-600 font-medium">
                         Page {{ currentPage }} of {{ totalPages }} ({{ filteredProducts.length }} items)
                     </span>
-                    <button @click="nextPage" :disabled="!hasNextPage" class="px-3 py-1.5 text-sm rounded-lg border border-gray-300 shadow-sm bg-white hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed">
+                    <button @click="nextPage" :disabled="!hasNextPage"
+                        class="px-3 py-1.5 text-sm rounded-lg border border-gray-300 shadow-sm bg-white hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed">
                         Next
                     </button>
                 </div>

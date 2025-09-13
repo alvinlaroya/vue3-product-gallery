@@ -3,7 +3,7 @@ const tab = defineModel<string>('tab');
 </script>
 
 <template>
-    <div class="flex justify-end">
+    <div class="flex">
         <div class="inline-flex rounded-md h-10 shadow-sm border border-gray-300 overflow-hidden">
             <button @click="tab = 'grid'" :class="[
                 'px-3 py-1.5 text-sm font-medium transition',
