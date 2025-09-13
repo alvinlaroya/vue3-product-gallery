@@ -4,10 +4,10 @@ A modern, responsive Vue.js application for browsing and managing a product cata
 
 ## Screenshots
 
-### Grid View
+### Table View
 ![Product Gallery - Grid View](src/assets/screenshot/Screenshot%202025-09-13%20173103.png)
 
-### Table View
+### Grid View
 ![Product Gallery - Table View](src/assets/screenshot/Screenshot%202025-09-13%20173131.png)
 
 ## Features
@@ -67,11 +67,6 @@ A modern, responsive Vue.js application for browsing and managing a product cata
 - **Vue3 Toastify**: Toast notification system
 - **Custom SVG Icons**: Scalable vector graphics for UI elements
 
-### Development Tools
-- **ESLint**: Code linting and formatting
-- **TypeScript**: Static type checking
-- **Hot Module Replacement**: Instant development feedback
-
 ## How to Setup
 
 ### Prerequisites
@@ -89,11 +84,6 @@ A modern, responsive Vue.js application for browsing and managing a product cata
 2. **Install dependencies**
    ```bash
    npm install
-   ```
-
-3. **Verify installation**
-   ```bash
-   npm run typecheck
    ```
 
 ## How to Run
@@ -174,22 +164,6 @@ src/
 ├── main.ts             # Application entry point
 └── style.css           # Global styles
 ```
-
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Run the test suite
-6. Submit a pull request
 
 ## License
 
