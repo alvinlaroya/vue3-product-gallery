@@ -2,6 +2,14 @@
 
 A modern, responsive Vue.js application for browsing and managing a product catalog with advanced filtering, sorting, and view options.
 
+## Screenshots
+
+### Grid View
+![Product Gallery - Grid View](src/assets/screenshot/Screenshot%202025-09-13%20173103.png)
+
+### Table View
+![Product Gallery - Table View](src/assets/screenshot/Screenshot%202025-09-13%20173131.png)
+
 ## Features
 
 ### 🛍️ Product Management
