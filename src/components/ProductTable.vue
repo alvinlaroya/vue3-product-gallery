@@ -12,7 +12,7 @@ const { isFavorite, toggleFavorite } = useFavorites();
 
 <template>
     <table class="min-w-full border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
-        <thead class="bg-gray-200 lg:text-base font-semibold text-gray-700">
+        <thead class="bg-gray-200 lg:text-[1.1rem] font-semibold text-gray-700">
             <tr>
                 <th class="px-4 py-3 text-left ">Product</th>
                 <th class="px-4 py-3 text-left">Category</th>
