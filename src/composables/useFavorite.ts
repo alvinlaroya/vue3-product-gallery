@@ -66,18 +66,6 @@ export function useFavorites() {
         return products.filter((p) => isFavorite(p.id));
     }
 
-    // ✅ New: Clear all favorites
-    function clearAllFavorites() {
-        favorites.value = [];
-        persistFavorites();
-        toast("All favorites cleared.", {
-            theme: "auto",
-            type: "default",
-            dangerouslyHTMLString: true,
-            autoClose: 700
-        });
-    }
-
     if (favorites.value.length === 0) {
         loadFavorites();
     }
@@ -86,7 +74,6 @@ export function useFavorites() {
         data: favorites,
         isFavorite,
         toggleFavorite,
-        getFavoriteProducts,
-        clearAllFavorites
+        getFavoriteProducts
     };
 }

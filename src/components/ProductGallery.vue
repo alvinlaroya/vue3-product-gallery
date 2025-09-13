@@ -12,8 +12,6 @@ import ProductTable from '../components/ProductTable.vue';
 import { useProducts } from '../composables/useProduct';
 import { useFavorites } from '../composables/useFavorite';
 
-const currentPath = ref(window.location.hash)
-
 const {
     data: products,
     loading: isLoading,
@@ -22,7 +20,7 @@ const {
 } = useProducts({ shouldFail: false });
 const errorMessage = computed(() => error.value || '');
 
-const { data: favorites, clearAllFavorites } = useFavorites();
+const { data: favorites } = useFavorites();
 
 const tab = ref<'grid' | 'table'>('grid');
 const tabs = {
@@ -34,6 +32,7 @@ type SortOrder = 'asc' | 'desc';
 const filterText = ref<string>('');
 const category = ref<string>('All');
 const sortOrder = ref<SortOrder>('asc');
+const showFavorites = ref<boolean>(false);
 
 // client-side pagination
 const currentPage = ref<number>(1);
@@ -44,7 +43,7 @@ watch(itemsPerPage, () => {
 
 // filter and sort all products
 const filteredProducts = computed<Product[]>(() => {
-    const allProducts = currentPath.value === '#/' ? products : favorites;
+    const allProducts = showFavorites.value ? favorites : products;
 
     if (!allProducts.value) return [];
 
@@ -99,7 +98,8 @@ function retry() {
 <template>
     <section>
         <!-- Filters -->
-        <div class="flex gap-3 items-end flex-wrap mb-4">
+        <div class="flex items-end  gap-4 flex-wrap mb-4">
+
             <div>
                 <label for="filter" class="block font-semibold">Filter by name</label>
                 <input id="filter" v-model="filterText" type="text" placeholder="Search products..."
@@ -116,11 +116,27 @@ function retry() {
                 </select>
             </div>
 
-            <button v-if="currentPath === '#/favorite' && visibleProducts.length > 0" @click="clearAllFavorites"
-                class="px-3 py-2 border rounded-md shadow-sm bg-red-700 text-white justify-end hover:bg-red-500">
-                Clear Favorites
-            </button>
+            <div class="inline-flex rounded-md h-10 shadow-sm border border-gray-300 overflow-hidden">
+                <button @click="showFavorites = false" :class="[
+                    'px-3 py-1.5 text-sm font-medium transition',
+                    !showFavorites
+                        ? 'bg-black text-white'
+                        : 'bg-white text-gray-700 hover:bg-gray-100'
+                ]">
+                    All Products
+                </button>
+
+                <button @click="showFavorites = true" :class="[
+                    'px-3 py-1.5 text-sm font-medium transition border-l border-gray-300',
+                    showFavorites
+                        ? 'bg-black text-white'
+                        : 'bg-white text-gray-700 hover:bg-gray-100'
+                ]">
+                    Favorites
+                </button>
+            </div>
         </div>
+
 
         <div class="flex lg:justify-between flex-col lg:flex-row border-b pb-3">
             <!-- Category Filter -->
