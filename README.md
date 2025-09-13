@@ -2,6 +2,8 @@
 
 A modern, responsive Vue.js application for browsing and managing a product catalog with advanced filtering, sorting, and view options.
 
+[Live Demo](https://vue3-product-gallery.vercel.app/)
+
 ## Screenshots
 
 ### Table View
